@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mairie-ouverte.fr/sitemap.xml

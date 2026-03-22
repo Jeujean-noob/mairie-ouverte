@@ -1,0 +1,211 @@
+{
+  "lastUpdate": "2026-03-18",
+  "commune": {
+    "nom": "La Clayette",
+    "departement": "Saone-et-Loire",
+    "insee": "71133",
+    "region": "Bourgogne-Franche-Comte",
+    "population": 2100,
+    "siteOfficiel": "https://www.mairie-laclayette.fr"
+  },
+  "mandats": [
+    {
+      "id": "2014-2020",
+      "maire": "Daniel Laroche",
+      "debut": "2014-03-01",
+      "fin": "2020-05-24",
+      "label": "Mandat Laroche (2014\u20132020)"
+    },
+    {
+      "id": "2020-2026",
+      "maire": "Christian Lavenir",
+      "debut": "2020-05-25",
+      "fin": "2026-03-14",
+      "label": "Mandat Lavenir (2020\u20132026)"
+    },
+    {
+      "id": "2026-2032",
+      "maire": "Gr\u00e9gory Vaizand",
+      "debut": "2026-03-15",
+      "fin": null,
+      "label": "Mandat Vaizand (2026\u20132032)"
+    }
+  ],
+  "kpi": {
+    "deliberations_total": 301,
+    "budget_fonctionnement_2024": 2840000,
+    "budget_investissement_2024": 1120000,
+    "dette_par_habitant": 892,
+    "annee_reference": 2024
+  },
+  "pvPage": "https://www.mairie-laclayette.fr/mairie-de-la-clayette/comptes-rendus-de-conseils/",
+  "delibPage": "https://www.mairie-laclayette.fr/mairie-de-la-clayette/listes-des-deliberations/",
+  "deliberations": [
+    { "id": "D2026-20", "date": "2026-03-09", "numero": "2026/20", "objet": "Validation du principe d\u2019une aide communale au dispositif du Docteur Junior", "theme": "Sant\u00e9", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-20-VALIDATION-PRCPE-DOCTEUR-JUNIOR.pdf", "pv": null, "note": "Vot\u00e9 par le mandat sortant Lavenir (passation le 15 mars). H\u00e9rit\u00e9 par Vaizand. PV non encore publi\u00e9." },
+    { "id": "D2026-19", "date": "2026-03-09", "numero": "2026/19", "objet": "Vote du budget principal 2026", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-19-VOTE-BP-2026-BUDGET-PRICPAL.pdf", "pv": null, "note": "Dernier conseil Lavenir avant passation. PV non encore publi\u00e9." },
+    { "id": "D2026-18", "date": "2026-03-09", "numero": "2026/18", "objet": "Vote des taux des taxes directes locales", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-18-VOTE-TAUX-TAXES-DIRECTES-LOCALES.pdf", "pv": null, "note": "" },
+    { "id": "D2026-17", "date": "2026-03-09", "numero": "2026/17", "objet": "Subventions aux associations 2026", "theme": "Associations", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-17-SUBVENTIOSN-ASSOCIATIONS-206.pdf", "pv": null, "note": "" },
+    { "id": "D2026-15", "date": "2026-03-09", "numero": "2026/15", "objet": "Affectation anticip\u00e9e des r\u00e9sultats 2025 \u2014 budget principal", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-15-AFFECTATION-ANTICIPEE-RESULTATS-2025_BP-PCIPAL.pdf", "pv": null, "note": "" },
+    { "id": "D2026-04", "date": "2026-03-09", "numero": "2026/04", "objet": "Am\u00e9nagements de la place de la poste \u2014 choix d\u2019une esquisse", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-04-AMENAGEMENTS-PLACE-DE-LA-POSTE-CHOIX-ESQUISSE.pdf", "pv": null, "note": "" },
+    { "id": "D2026-01", "date": "2026-01-26", "numero": "2026/01", "objet": "Ouverture de cr\u00e9dits avant le vote du budget", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/01/D2026-01-OUVERTURE-CREDITS-AVANT-VOTE-BUDGET.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/PV-CM1_26-01-2026-SIGNE.pdf", "note": "" },
+    { "id": "D2025-69", "date": "2025-12-15", "numero": "2025/69", "objet": "Subvention pour l\u2019organisation de la manifestation sportive \u00ab\u00a0la foul\u00e9e des Ducs\u00a0\u00bb", "theme": "Sports", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/12/D2025-69-SUBVENTION-LA-FOULEE-DES-DUCS.pdf", "pv": null, "note": "PV du 15/12/2025 non encore publi\u00e9." },
+    { "id": "D2025-62", "date": "2025-12-15", "numero": "2025/62", "objet": "Contrat de ma\u00eetrise d\u2019\u0153uvre \u2014 travaux de r\u00e9habilitation de la place de la poste", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/12/D2025-62-CMO_REHABILITATION-PLACE-DE-LA-POSTE.pdf", "pv": null, "note": "" },
+    { "id": "D2025-60", "date": "2025-11-03", "numero": "2025/60", "objet": "Subvention exceptionnelle au Centre de Documentation R\u00e9sistance et D\u00e9portation", "theme": "Culture", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/11/D2025-60-SUBVENTION-EXCEPTIONNELLE-CDRD71.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/12/PV-CM-3_11_2025-VALIDE.pdf", "note": "" },
+    { "id": "D2025-36", "date": "2025-06-30", "numero": "2025/36", "objet": "Requalification Place de Lattre de Tassigny \u2014 subvention R\u00e9gion BFC (C2R)", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/07/D2025-36-ACCPETATION-SUBVENTION-C2R-REGION-BFC.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/09/PV-CM-30_06_2025-VALIDE.pdf", "note": "" },
+    { "id": "D2025-17", "date": "2025-05-05", "numero": "2025/17", "objet": "Requalification Place de Lattre de Tassigny \u2014 validation des march\u00e9s publics", "theme": "Voirie", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/05/D2025-17-PLACE-DE-LATTRE_ATTRIBUTION-MARCHES.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/06/PV-CM-05_05_2025-VALIDE.pdf", "note": "" },
+    { "id": "D2025-16", "date": "2025-04-14", "numero": "2025/16", "objet": "Vote du budget principal 2025", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/04/D2025-16-VOTE-BP-PRICPAL-2025.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/05/PV-CM3_14-04-2025.pdf", "note": "" },
+    { "id": "D2024-63", "date": "2024-09-16", "numero": "2024/63", "objet": "Mise \u00e0 disposition des locaux communaux aux associations s\u00e9dentaires", "theme": "Associations", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/10/D2024_63-MISE-A-DISPO-LOCAUX-COMMUNAUX-AUX-ASSOCIATIONS.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/11/PV-CM7_16-09-2024.pdf", "note": "" },
+    { "id": "D2024-28", "date": "2024-04-15", "numero": "2024/28", "objet": "Vote du budget principal 2024", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/05/D2024_28-VOTE-BUDGET-PRINCIPAL-2024.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/05/PV-CM-15-04-2024.pdf", "note": "" },
+    { "id": "D2024-02", "date": "2024-01-29", "numero": "2024/02", "objet": "Am\u00e9nagements et s\u00e9curisation des espaces publics \u2014 validation de l\u2019avant-projet d\u00e9finitif", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/02/D2024_02-VALIDATION-AVPD-AMNGMTS-ESPACES-PUBLICS-1.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/02/PV-CM1_-29-01-2024.pdf", "note": "" },
+    { "id": "D2023-76", "date": "2023-12-18", "numero": "2023/76", "objet": "Signature de la convention-cadre d\u2019op\u00e9ration de revitalisation du territoire", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/12/LCD2023_76.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/01/PV-CM-18-12-2023.pdf", "note": "" },
+    { "id": "D2023-56", "date": "2023-11-13", "numero": "2023/56", "objet": "Approbation du sch\u00e9ma directeur d\u2019assainissement et de gestion int\u00e9gr\u00e9e des eaux", "theme": "Assainissement", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/11/LCDELIB-2023-56.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/12/PV-CM-13-11-2023.pdf", "note": "" },
+    { "id": "D2023-13", "date": "2023-04-13", "numero": "2023/13", "objet": "Budgets pr\u00e9visionnels 2023 \u2014 budget principal et annexes", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/04/LCDELIB202313.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/06/PV-CM-13-04-2023.pdf", "note": "" },
+    { "id": "D2021-SEMA-R", "date": "2021-06-21", "numero": "2021/\u2014", "objet": "R\u00e9siliation du contrat de concession ZAC Centre-Ville (SEMA) \u2014 approbation du protocole transactionnel", "theme": "ZAC / SEMA", "mandat": "2020-2026", "pdf": null, "pv": "https://www.mairie-laclayette.fr/?jet_download=724", "note": "Laroche vote en faveur depuis l\u2019opposition. N\u00b0 exact \u00e0 v\u00e9rifier dans le PV (CM du 21 juin 2021)." },
+    { "id": "D2021-SEMA-E", "date": "2021-06-21", "numero": "2021/\u2014", "objet": "Emprunt de 1\u00a0250\u00a0000\u00a0\u20ac \u2014 financement indemnit\u00e9 r\u00e9siliation SEMA", "theme": "ZAC / SEMA", "mandat": "2020-2026", "pdf": null, "pv": "https://www.mairie-laclayette.fr/?jet_download=724", "note": "Laroche vote en faveur depuis l\u2019opposition. N\u00b0 exact \u00e0 v\u00e9rifier dans le PV (CM du 21 juin 2021)." }
+  ],
+  "budget": {
+    "annees": [2020, 2021, 2022, 2023, 2024],
+    "fonctionnement_depenses": [2510000, 2620000, 2710000, 2780000, 2840000],
+    "fonctionnement_recettes": [2680000, 2710000, 2780000, 2830000, 2910000],
+    "investissement_depenses": [890000, 1450000, 980000, 1050000, 1120000],
+    "dette_capital": [3200000, 4100000, 3950000, 3820000, 3710000]
+  },
+  "engagements": [
+    {
+      "id": "E01",
+      "titre": "Revitalisation du centre-bourg",
+      "detail": "Am\u00e9nagement des espaces publics, commerces de proximit\u00e9, attractivit\u00e9 r\u00e9sidentielle. Engag\u00e9 sous le mandat Lavenir (place de Lattre, place de la Poste). Aucune d\u00e9cision propre du mandat Vaizand \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2025-17", "D2025-62", "D2026-04"]
+    },
+    {
+      "id": "E02",
+      "titre": "Maintien et d\u00e9veloppement de l\u2019offre m\u00e9dicale",
+      "detail": "Dispositif Docteur Junior vot\u00e9 le 9 mars 2026 par le mandat Lavenir sortant, transmis au mandat Vaizand. Aucune d\u00e9cision propre du nouveau conseil \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2026-20"]
+    },
+    {
+      "id": "E03",
+      "titre": "Programme de voirie",
+      "detail": "Chantiers engag\u00e9s sous le mandat Lavenir. Aucune d\u00e9lib\u00e9ration propre du mandat Vaizand sur ce sujet \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2025-17"]
+    },
+    {
+      "id": "E04",
+      "titre": "Transparence budg\u00e9taire",
+      "detail": "Aucune d\u00e9lib\u00e9ration ni initiative observ\u00e9e sur ce point sous le mandat Vaizand.",
+      "statut": "pending",
+      "label": "Non observ\u00e9",
+      "sources": []
+    },
+    {
+      "id": "E05",
+      "titre": "Soutien au tissu associatif",
+      "detail": "Subventions aux associations vot\u00e9es le 9 mars 2026 par le mandat Lavenir sortant. Aucune d\u00e9cision propre du mandat Vaizand \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2026-17"]
+    }
+  ],
+  "sema_timeline": [
+    {
+      "date": "2012",
+      "titre": "Signature du contrat de concession ZAC Centre-Ville",
+      "corps": "La commune confie \u00e0 la SEMA (soci\u00e9t\u00e9 d\u2019\u00e9conomie mixte d\u2019am\u00e9nagement) le d\u00e9veloppement de la ZAC Centre-Ville. Daniel Laroche si\u00e8ge alors comme simple conseiller municipal, pas encore maire.",
+      "type": "neutral",
+      "source": ""
+    },
+    {
+      "date": "2014",
+      "titre": "Daniel Laroche \u00e9lu maire \u2014 Gr\u00e9gory Vaizand nomm\u00e9 adjoint aux finances",
+      "corps": "Laroche remporte les \u00e9lections municipales et devient maire de La Clayette. Gr\u00e9gory Vaizand est nomm\u00e9 adjoint aux finances dans cette nouvelle \u00e9quipe. Le contrat SEMA est en cours d\u2019ex\u00e9cution.",
+      "type": "neutral",
+      "source": ""
+    },
+    {
+      "date": "2020",
+      "titre": "Changement de majorit\u00e9 \u2014 Christian Lavenir \u00e9lu maire",
+      "corps": "Christian Lavenir remporte les \u00e9lections municipales. Laroche passe en opposition avec son groupe.",
+      "type": "neutral",
+      "source": ""
+    },
+    {
+      "date": "21 juin 2021",
+      "titre": "R\u00e9siliation du contrat SEMA \u2014 indemnit\u00e9 significative",
+      "corps": "Le conseil municipal vote la r\u00e9siliation du contrat de concession. Une indemnit\u00e9 significative est vers\u00e9e au concessionnaire. Laroche, conseiller d\u2019opposition, vote en faveur de la r\u00e9siliation.",
+      "type": "alert",
+      "source": "PV du CM du 21 juin 2021"
+    },
+    {
+      "date": "21 juin 2021",
+      "titre": "Emprunt de 1\u00a0250\u00a0000\u00a0\u20ac pour financer la r\u00e9siliation",
+      "corps": "Un emprunt de 1,25\u00a0M\u20ac est contract\u00e9 pour couvrir le co\u00fbt de la r\u00e9siliation. Laroche vote \u00e9galement en faveur de cet emprunt.",
+      "type": "alert",
+      "source": "PV du CM du 21 juin 2021"
+    },
+    {
+      "date": "15 mars 2026",
+      "titre": "Vaizand \u00e9lu maire \u2014 Laroche nomm\u00e9 1er adjoint",
+      "corps": "Apr\u00e8s les \u00e9lections du 15 mars 2026, Gr\u00e9gory Vaizand devient maire. Daniel Laroche, qui avait vot\u00e9 la r\u00e9siliation SEMA et l\u2019emprunt associ\u00e9 depuis l\u2019opposition en 2021, est nomm\u00e9 premier adjoint.",
+      "type": "alert",
+      "source": ""
+    }
+  ],
+  "publications": [
+    {
+      "id": "PUB03",
+      "date": "2026-03-18",
+      "type": "editorial",
+      "titre": "Affaire SEMA\u00a0: chronologie d\u2019une d\u00e9cision co\u00fbteuse",
+      "extrait": "Retour sur la r\u00e9siliation du contrat de concession ZAC Centre-Ville en 2021, ses co\u00fbts, et les positions des acteurs \u00e0 chaque \u00e9tape.",
+      "lien": null
+    },
+    {
+      "id": "PUB02",
+      "date": "2026-03-16",
+      "type": "official",
+      "titre": "Cons\u00e9quences de passation\u00a0: quelles d\u00e9cisions h\u00e9rite le mandat Vaizand\u00a0?",
+      "extrait": "Analyse des d\u00e9lib\u00e9rations du 9 mars 2026, vot\u00e9es par le mandat Lavenir et transmises au nouveau conseil.",
+      "lien": null
+    },
+    {
+      "id": "PUB01",
+      "date": "2026-03-10",
+      "type": "official",
+      "titre": "Comment lire un budget communal\u00a0? Guide pratique",
+      "extrait": "Section fonctionnement, section investissement, exc\u00e9dent, emprunt\u2026 Tout comprendre en 5 minutes.",
+      "lien": null
+    }
+  ],
+  "faq": [
+    {
+      "q": "Qu\u2019est-ce qu\u2019un conseil municipal ?",
+      "r": "Le conseil municipal est l\u2019assembl\u00e9e \u00e9lue de la commune. \u00c0 La Clayette, il comprend 19 conseillers \u00e9lus pour 6 ans. Il vote le budget, les d\u00e9lib\u00e9rations et d\u00e9finit les orientations de la politique communale. Le maire est le chef de l\u2019ex\u00e9cutif."
+    },
+    {
+      "q": "Qu\u2019est-ce qu\u2019une d\u00e9lib\u00e9ration ?",
+      "r": "Une d\u00e9lib\u00e9ration est une d\u00e9cision officielle prise par le conseil municipal apr\u00e8s vote. Elle est consign\u00e9e dans un proc\u00e8s-verbal (PV) public. Toute d\u00e9cision engageant la commune (d\u00e9pense, convention, march\u00e9\u2026) doit faire l\u2019objet d\u2019une d\u00e9lib\u00e9ration."
+    },
+    {
+      "q": "Comment est constitu\u00e9 le budget d\u2019une commune ?",
+      "r": "Le budget municipal est divis\u00e9 en deux sections : la section de fonctionnement (d\u00e9penses courantes : salaires, charges, subventions) et la section d\u2019investissement (travaux, \u00e9quipements). Les recettes proviennent principalement de la dotation de l\u2019\u00c9tat (DGF) et des taxes locales."
+    },
+    {
+      "q": "Qu\u2019est-ce qu\u2019une ZAC ?",
+      "r": "Une Zone d\u2019Am\u00e9nagement Concert\u00e9 (ZAC) est un outil d\u2019urbanisme permettant \u00e0 une collectivit\u00e9 de ma\u00eetriser l\u2019am\u00e9nagement d\u2019un secteur. La commune peut en confier la r\u00e9alisation \u00e0 un op\u00e9rateur priv\u00e9 ou semi-public via un contrat de concession."
+    },
+    {
+      "q": "Pourquoi ce site existe-t-il ?",
+      "r": "Ce site est une initiative citoyenne personnelle, ind\u00e9pendante de toute liste ou parti. Son objectif est de rendre les d\u00e9cisions municipales accessibles \u00e0 tous, en fournissant les sources officielles de chaque donn\u00e9e affich\u00e9e."
+    },
+    {
+      "q": "Les donn\u00e9es de ce site sont-elles fiables ?",
+      "r": "Chaque donn\u00e9e factuelle est li\u00e9e \u00e0 sa source officielle (PV de conseil, API DGFiP). Les analyses sont clairement signal\u00e9es comme telles et sign\u00e9es. En cas d\u2019erreur signal\u00e9e avec justificatif, une correction est publi\u00e9e imm\u00e9diatement avec mention."
+    }
+  ]
+}
