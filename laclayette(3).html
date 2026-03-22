@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Clayette en clair — mairie-ouverte.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg:           #F5F3EF;
+  --bg-card:      #FFFFFF;
+  --bg-subtle:    #EEECEA;
+  --text:         #111827;
+  --text-secondary: #6B7280;
+  --text-light:   #9CA3AF;
+  --accent:       #1D4ED8;
+  --accent-light: #EFF6FF;
+  --accent-hover: #1E40AF;
+  --border:       #E5E7EB;
+  --border-strong:#D1D5DB;
+  --official-bg:  #ECFDF5;
+  --official-fg:  #065F46;
+  --official-border: #A7F3D0;
+  --editorial-bg: #FFFBEB;
+  --editorial-fg: #92400E;
+  --editorial-border: #FDE68A;
+  --alert:        #DC2626;
+  --font-serif:   'Libre Baskerville', Georgia, serif;
+  --font-sans:    'Source Sans 3', system-ui, sans-serif;
+  --radius:       6px;
+  --shadow:       0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:    0 4px 12px rgba(0,0,0,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HEADER ─────────────────────────────────────── */
+#site-header {
+  background: var(--text);
+  color: #fff;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  gap: 1rem;
+}
+.site-brand {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  text-decoration: none;
+  color: inherit;
+}
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: #fff;
+}
+.brand-sep { color: #6B7280; font-weight: 300; }
+.brand-domain { font-size: .75rem; color: #9CA3AF; font-family: var(--font-sans); letter-spacing: .04em; }
+.header-badge {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 20px;
+  padding: .2rem .7rem;
+  font-size: .7rem;
+  color: #D1FAE5;
+  white-space: nowrap;
+  letter-spacing: .03em;
+}
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: .4rem;
+}
+
+/* ─── NAV TABS ───────────────────────────────────── */
+#main-nav {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 58px;
+  z-index: 90;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .85rem 1.1rem;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  transition: color .15s, border-color .15s;
+  user-select: none;
+  letter-spacing: .01em;
+}
+.nav-tab:hover { color: var(--accent); }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.nav-tab .tab-icon { font-size: .9rem; opacity: .7; }
+
+/* ─── LAYOUT ─────────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+.container-narrow { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+/* ─── BADGES ──────────────────────────────────────── */
+.badge-official {
+  display: inline-flex; align-items: center; gap: .3rem;
+  background: var(--official-bg); color: var(--official-fg);
+  border: 1px solid var(--official-border);
+  padding: .15rem .55rem; border-radius: 20px;
+  font-size: .68rem; font-weight: 600; letter-spacing: .03em;
+}
+.badge-editorial {
+  display: inline-flex; align-items: center; gap: .3rem;
+  background: var(--editorial-bg); color: var(--editorial-fg);
+  border: 1px solid var(--editorial-border);
+  padding: .15rem .55rem; border-radius: 20px;
+  font-size: .68rem; font-weight: 600; letter-spacing: .03em;
+}
+.badge-mandat {
+  display: inline-block;
+  background: var(--accent-light); color: var(--accent);
+  border: 1px solid #BFDBFE;
+  padding: .1rem .45rem; border-radius: 4px;
+  font-size: .68rem; font-weight: 600;
+}
+
+/* ─── BUTTONS ─────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .5rem 1rem; border-radius: var(--radius);
+  font-size: .8rem; font-weight: 600; cursor: pointer;
+  border: none; text-decoration: none; transition: all .15s;
+  letter-spacing: .02em;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary {
+  background: #fff; color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+.btn-secondary:hover { background: var(--accent-light); }
+.btn-ghost {
+  background: transparent; color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--bg-subtle); color: var(--text); }
+.btn-sm { padding: .35rem .75rem; font-size: .75rem; }
+
+/* ─── CARDS ───────────────────────────────────────── */
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.card-header {
+  padding: 1rem 1.25rem .75rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-title {
+  font-family: var(--font-serif); font-size: .95rem; font-weight: 700;
+}
+.card-body { padding: 1.25rem; }
+
+/* ─── KPI GRID ────────────────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.kpi-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem 1.25rem 1rem;
+  box-shadow: var(--shadow);
+  border-left: 3px solid var(--accent);
+}
+.kpi-label { font-size: .73rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin-bottom: .35rem; }
+.kpi-value { font-family: var(--font-serif); font-size: 1.9rem; font-weight: 700; line-height: 1; color: var(--text); }
+.kpi-sub { font-size: .73rem; color: var(--text-secondary); margin-top: .3rem; }
+
+/* ─── PAGE HERO ───────────────────────────────────── */
+.page-hero {
+  background: var(--text);
+  color: #fff;
+  padding: 2.5rem 1.5rem 2rem;
+}
+.page-hero-inner { max-width: 1200px; margin: 0 auto; }
+.hero-eyebrow {
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+  color: #9CA3AF; font-weight: 600; margin-bottom: .5rem;
+}
+.hero-title {
+  font-family: var(--font-serif); font-size: 1.75rem; font-weight: 700;
+  line-height: 1.2; margin-bottom: .6rem;
+}
+.hero-sub { color: #9CA3AF; font-size: .9rem; max-width: 540px; line-height: 1.55; }
+.hero-actions { display: flex; gap: .75rem; margin-top: 1.25rem; flex-wrap: wrap; }
+.hero-actions .btn-primary { background: var(--accent); }
+.hero-actions .btn-ghost { border-color: rgba(255,255,255,.2); color: #D1D5DB; }
+.hero-actions .btn-ghost:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+/* ─── SUB-TABS ─────────────────────────────────────── */
+.sub-tabs {
+  display: flex; gap: .35rem; padding: 1.25rem 1.5rem .5rem;
+  max-width: 1200px; margin: 0 auto; flex-wrap: wrap;
+}
+.sub-tab {
+  padding: .4rem .9rem; border-radius: 20px;
+  font-size: .78rem; font-weight: 500; cursor: pointer;
+  color: var(--text-secondary); border: 1px solid var(--border);
+  background: #fff; transition: all .15s;
+}
+.sub-tab:hover { color: var(--accent); border-color: var(--accent); }
+.sub-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.sub-page { display: none; }
+.sub-page.active { display: block; }
+
+/* ─── TABLE ───────────────────────────────────────── */
+.table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead th {
+  background: var(--bg-subtle); padding: .65rem 1rem;
+  text-align: left; font-weight: 600; font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--text-secondary); border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--bg-subtle); }
+tbody td { padding: .65rem 1rem; vertical-align: top; }
+td .delib-objet { font-weight: 500; margin-bottom: .2rem; line-height: 1.35; }
+td .delib-meta { font-size: .72rem; color: var(--text-secondary); }
+
+/* ─── SEARCH / FILTER BAR ─────────────────────────── */
+.filter-bar {
+  display: flex; gap: .75rem; margin-bottom: 1rem;
+  flex-wrap: wrap; align-items: center;
+}
+.filter-bar input, .filter-bar select {
+  padding: .5rem .9rem; border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-family: var(--font-sans);
+  font-size: .82rem; background: #fff; color: var(--text);
+  transition: border-color .15s;
+}
+.filter-bar input:focus, .filter-bar select:focus {
+  outline: none; border-color: var(--accent);
+}
+.filter-bar input { min-width: 220px; flex: 1; }
+.filter-bar select { min-width: 160px; }
+.result-count { font-size: .78rem; color: var(--text-secondary); margin-left: auto; }
+
+/* ─── TIMELINE ────────────────────────────────────── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: .55rem; top: 0; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.tl-item { position: relative; padding-bottom: 1.75rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -1.65rem; top: .3rem;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.tl-dot.alert { background: var(--alert); box-shadow: 0 0 0 2px var(--alert); }
+.tl-dot.neutral { background: var(--text-secondary); box-shadow: 0 0 0 2px var(--text-secondary); }
+.tl-date { font-size: .72rem; font-weight: 600; color: var(--text-secondary); letter-spacing: .04em; text-transform: uppercase; margin-bottom: .2rem; }
+.tl-title { font-weight: 600; font-size: .9rem; margin-bottom: .3rem; }
+.tl-body { font-size: .82rem; color: var(--text-secondary); line-height: 1.5; }
+.tl-badges { display: flex; gap: .4rem; margin-top: .4rem; flex-wrap: wrap; }
+
+/* ─── ENGAGEMENT TRACKER ──────────────────────────── */
+.eng-grid { display: flex; flex-direction: column; gap: .75rem; }
+.eng-item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.eng-status {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; flex-shrink: 0; margin-top: .1rem;
+}
+.eng-status.ok { background: var(--official-bg); }
+.eng-status.partial { background: var(--editorial-bg); }
+.eng-status.pending { background: #F3F4F6; }
+.eng-status.none { background: #FEF2F2; }
+.eng-content { flex: 1; }
+.eng-title { font-weight: 600; font-size: .88rem; margin-bottom: .25rem; }
+.eng-detail { font-size: .8rem; color: var(--text-secondary); line-height: 1.4; }
+.eng-tag { font-size: .68rem; font-weight: 600; padding: .1rem .4rem; border-radius: 3px; margin-top: .4rem; display: inline-block; }
+.eng-tag.ok { background: var(--official-bg); color: var(--official-fg); }
+.eng-tag.partial { background: var(--editorial-bg); color: var(--editorial-fg); }
+.eng-tag.pending { background: #F3F4F6; color: var(--text-secondary); }
+.eng-status.herite { background: #EDE9FE; }
+.eng-tag.herite { background: #EDE9FE; color: #5B21B6; }
+
+/* ─── FAQ ACCORDION ───────────────────────────────── */
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  width: 100%; text-align: left; padding: 1rem 0;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-sans); font-size: .9rem; font-weight: 600;
+  color: var(--text); display: flex; justify-content: space-between;
+  align-items: center; gap: 1rem;
+}
+.faq-q:hover { color: var(--accent); }
+.faq-chevron { transition: transform .2s; flex-shrink: 0; color: var(--text-secondary); }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-a { display: none; padding: 0 0 1rem; font-size: .85rem; color: var(--text-secondary); line-height: 1.65; }
+.faq-item.open .faq-a { display: block; }
+
+/* ─── PUBLICATIONS ────────────────────────────────── */
+.pub-grid { display: flex; flex-direction: column; gap: 1rem; }
+.pub-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem;
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  transition: box-shadow .15s;
+}
+.pub-card:hover { box-shadow: var(--shadow-md); }
+.pub-icon {
+  width: 42px; height: 42px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.pub-icon.official { background: var(--official-bg); }
+.pub-icon.editorial { background: var(--editorial-bg); }
+.pub-content { flex: 1; }
+.pub-meta { display: flex; gap: .5rem; align-items: center; margin-bottom: .4rem; flex-wrap: wrap; }
+.pub-date { font-size: .72rem; color: var(--text-secondary); }
+.pub-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; margin-bottom: .3rem; line-height: 1.3; }
+.pub-excerpt { font-size: .82rem; color: var(--text-secondary); line-height: 1.5; }
+.pub-actions { display: flex; gap: .5rem; margin-top: .75rem; flex-wrap: wrap; }
+
+/* ─── CHART CONTAINERS ────────────────────────────── */
+.chart-wrap { position: relative; height: 280px; }
+.chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+
+/* ─── SECTION HEADERS ─────────────────────────────── */
+.section-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; flex-wrap: wrap; gap: .75rem; }
+.section-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; }
+.section-sub { font-size: .82rem; color: var(--text-secondary); margin-top: .2rem; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 1.75rem 0; }
+
+/* ─── METHODOLOGY BOX ─────────────────────────────── */
+.method-box {
+  background: var(--official-bg); border: 1px solid var(--official-border);
+  border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.5rem;
+}
+.method-box h4 { color: var(--official-fg); font-size: .85rem; font-weight: 700; margin-bottom: .5rem; }
+.method-box p { font-size: .82rem; color: #065F46; line-height: 1.6; }
+
+.editorial-box {
+  background: var(--editorial-bg); border: 1px solid var(--editorial-border);
+  border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.5rem;
+}
+.editorial-box h4 { color: var(--editorial-fg); font-size: .85rem; font-weight: 700; margin-bottom: .5rem; }
+.editorial-box p { font-size: .82rem; color: #92400E; line-height: 1.6; }
+
+/* ─── LAST UPDATE BANNER ──────────────────────────── */
+.update-banner {
+  background: var(--accent-light); border: 1px solid #BFDBFE;
+  border-radius: var(--radius); padding: .6rem 1rem;
+  font-size: .78rem; color: var(--accent); display: flex;
+  align-items: center; gap: .5rem; margin-bottom: 1.5rem;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 640px) {
+  .burger { display: flex; }
+  .header-badge { display: none; }
+  #main-nav { top: 58px; }
+  .nav-tab { padding: .7rem .8rem; font-size: .78rem; }
+  .nav-tab .tab-icon { display: none; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-value { font-size: 1.5rem; }
+  .hero-title { font-size: 1.35rem; }
+  .chart-grid { grid-template-columns: 1fr; }
+  .pub-card { flex-direction: column; }
+  .eng-item { flex-direction: column; }
+  .filter-bar { flex-direction: column; }
+  .filter-bar input, .filter-bar select { width: 100%; min-width: unset; }
+}
+
+/* ─── ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page.active > * { animation: fadeUp .25s ease both; }
+.page.active > *:nth-child(2) { animation-delay: .05s; }
+.page.active > *:nth-child(3) { animation-delay: .1s; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ EMBEDDED DATA ══════════════════ -->
+<script type="application/json" id="site-data">
+{
+  "commune": {
+    "nom": "La Clayette",
+    "departement": "Saone-et-Loire",
+    "insee": "71133",
+    "region": "Bourgogne-Franche-Comte",
+    "population": 2100,
+    "siteOfficiel": "https://www.mairie-laclayette.fr"
+  },
+  "mandats": [
+    {
+      "id": "2014-2020",
+      "maire": "Daniel Laroche",
+      "debut": "2014-03-01",
+      "fin": "2020-05-24",
+      "label": "Mandat Laroche (2014\u20132020)"
+    },
+    {
+      "id": "2020-2026",
+      "maire": "Christian Lavenir",
+      "debut": "2020-05-25",
+      "fin": "2026-03-14",
+      "label": "Mandat Lavenir (2020\u20132026)"
+    },
+    {
+      "id": "2026-2032",
+      "maire": "Gr\u00e9gory Vaizand",
+      "debut": "2026-03-15",
+      "fin": null,
+      "label": "Mandat Vaizand (2026\u20132032)"
+    }
+  ],
+  "kpi": {
+    "deliberations_total": 301,
+    "budget_fonctionnement_2024": 2840000,
+    "budget_investissement_2024": 1120000,
+    "dette_par_habitant": 892,
+    "annee_reference": 2024
+  },
+  "pvPage": "https://www.mairie-laclayette.fr/mairie-de-la-clayette/comptes-rendus-de-conseils/",
+  "delibPage": "https://www.mairie-laclayette.fr/mairie-de-la-clayette/listes-des-deliberations/",
+  "deliberations": [
+    { "id": "D2026-20", "date": "2026-03-09", "numero": "2026/20", "objet": "Validation du principe d'une aide communale au dispositif du Docteur Junior", "theme": "Sant\u00e9", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-20-VALIDATION-PRCPE-DOCTEUR-JUNIOR.pdf", "pv": null, "note": "Vot\u00e9 par le mandat sortant Lavenir (passation le 15 mars). H\u00e9rit\u00e9 par Vaizand. PV non encore publi\u00e9." },
+    { "id": "D2026-19", "date": "2026-03-09", "numero": "2026/19", "objet": "Vote du budget principal 2026", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-19-VOTE-BP-2026-BUDGET-PRICPAL.pdf", "pv": null, "note": "Dernier conseil Lavenir avant passation. PV non encore publi\u00e9." },
+    { "id": "D2026-18", "date": "2026-03-09", "numero": "2026/18", "objet": "Vote des taux des taxes directes locales", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-18-VOTE-TAUX-TAXES-DIRECTES-LOCALES.pdf", "pv": null, "note": "" },
+    { "id": "D2026-17", "date": "2026-03-09", "numero": "2026/17", "objet": "Subventions aux associations 2026", "theme": "Associations", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-17-SUBVENTIOSN-ASSOCIATIONS-206.pdf", "pv": null, "note": "" },
+    { "id": "D2026-15", "date": "2026-03-09", "numero": "2026/15", "objet": "Affectation anticip\u00e9e des r\u00e9sultats 2025 \u2014 budget principal", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-15-AFFECTATION-ANTICIPEE-RESULTATS-2025_BP-PCIPAL.pdf", "pv": null, "note": "" },
+    { "id": "D2026-04", "date": "2026-03-09", "numero": "2026/04", "objet": "Am\u00e9nagements de la place de la poste \u2014 choix d'une esquisse", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-04-AMENAGEMENTS-PLACE-DE-LA-POSTE-CHOIX-ESQUISSE.pdf", "pv": null, "note": "" },
+    { "id": "D2026-01", "date": "2026-01-26", "numero": "2026/01", "objet": "Ouverture de cr\u00e9dits avant le vote du budget", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/01/D2026-01-OUVERTURE-CREDITS-AVANT-VOTE-BUDGET.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/PV-CM1_26-01-2026-SIGNE.pdf", "note": "" },
+    { "id": "D2025-69", "date": "2025-12-15", "numero": "2025/69", "objet": "Subvention pour l'organisation de la manifestation sportive \u00ab\u00a0la foul\u00e9e des Ducs\u00a0\u00bb", "theme": "Sports", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/12/D2025-69-SUBVENTION-LA-FOULEE-DES-DUCS.pdf", "pv": null, "note": "PV du 15/12/2025 non encore publi\u00e9." },
+    { "id": "D2025-62", "date": "2025-12-15", "numero": "2025/62", "objet": "Contrat de ma\u00eetrise d'\u0153uvre \u2014 travaux de r\u00e9habilitation de la place de la poste", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/12/D2025-62-CMO_REHABILITATION-PLACE-DE-LA-POSTE.pdf", "pv": null, "note": "" },
+    { "id": "D2025-60", "date": "2025-11-03", "numero": "2025/60", "objet": "Subvention exceptionnelle au Centre de Documentation R\u00e9sistance et D\u00e9portation", "theme": "Culture", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/11/D2025-60-SUBVENTION-EXCEPTIONNELLE-CDRD71.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/12/PV-CM-3_11_2025-VALIDE.pdf", "note": "" },
+    { "id": "D2025-36", "date": "2025-06-30", "numero": "2025/36", "objet": "Requalification Place de Lattre de Tassigny \u2014 subvention R\u00e9gion BFC (C2R)", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/07/D2025-36-ACCPETATION-SUBVENTION-C2R-REGION-BFC.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/09/PV-CM-30_06_2025-VALIDE.pdf", "note": "" },
+    { "id": "D2025-17", "date": "2025-05-05", "numero": "2025/17", "objet": "Requalification Place de Lattre de Tassigny \u2014 validation des march\u00e9s publics", "theme": "Voirie", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/05/D2025-17-PLACE-DE-LATTRE_ATTRIBUTION-MARCHES.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/06/PV-CM-05_05_2025-VALIDE.pdf", "note": "" },
+    { "id": "D2025-16", "date": "2025-04-14", "numero": "2025/16", "objet": "Vote du budget principal 2025", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/04/D2025-16-VOTE-BP-PRICPAL-2025.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2025/05/PV-CM3_14-04-2025.pdf", "note": "" },
+    { "id": "D2024-63", "date": "2024-09-16", "numero": "2024/63", "objet": "Mise \u00e0 disposition des locaux communaux aux associations s\u00e9dentaires", "theme": "Associations", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/10/D2024_63-MISE-A-DISPO-LOCAUX-COMMUNAUX-AUX-ASSOCIATIONS.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/11/PV-CM7_16-09-2024.pdf", "note": "" },
+    { "id": "D2024-28", "date": "2024-04-15", "numero": "2024/28", "objet": "Vote du budget principal 2024", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/05/D2024_28-VOTE-BUDGET-PRINCIPAL-2024.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/05/PV-CM-15-04-2024.pdf", "note": "" },
+    { "id": "D2024-02", "date": "2024-01-29", "numero": "2024/02", "objet": "Am\u00e9nagements et s\u00e9curisation des espaces publics \u2014 validation de l'avant-projet d\u00e9finitif", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/02/D2024_02-VALIDATION-AVPD-AMNGMTS-ESPACES-PUBLICS-1.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/02/PV-CM1_-29-01-2024.pdf", "note": "" },
+    { "id": "D2023-76", "date": "2023-12-18", "numero": "2023/76", "objet": "Signature de la convention-cadre d'op\u00e9ration de revitalisation du territoire", "theme": "Urbanisme", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/12/LCD2023_76.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2024/01/PV-CM-18-12-2023.pdf", "note": "" },
+    { "id": "D2023-56", "date": "2023-11-13", "numero": "2023/56", "objet": "Approbation du sch\u00e9ma directeur d'assainissement et de gestion int\u00e9gr\u00e9e des eaux", "theme": "Assainissement", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/11/LCDELIB-2023-56.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/12/PV-CM-13-11-2023.pdf", "note": "" },
+    { "id": "D2023-13", "date": "2023-04-13", "numero": "2023/13", "objet": "Budgets pr\u00e9visionnels 2023 \u2014 budget principal et annexes", "theme": "Budget", "mandat": "2020-2026", "pdf": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/04/LCDELIB202313.pdf", "pv": "https://www.mairie-laclayette.fr/wp-content/uploads/2023/06/PV-CM-13-04-2023.pdf", "note": "" },
+    { "id": "D2021-SEMA-R", "date": "2021-06-21", "numero": "2021/\u2014", "objet": "R\u00e9siliation du contrat de concession ZAC Centre-Ville (SEMA) \u2014 approbation du protocole transactionnel", "theme": "ZAC / SEMA", "mandat": "2020-2026", "pdf": null, "pv": "https://www.mairie-laclayette.fr/?jet_download=724", "note": "Laroche vote en faveur depuis l\u2019opposition. N\u00b0 exact \u00e0 v\u00e9rifier dans le PV (CM du 21 juin 2021)." },
+    { "id": "D2021-SEMA-E", "date": "2021-06-21", "numero": "2021/\u2014", "objet": "Emprunt de 1\u00a0250\u00a0000\u00a0\u20ac \u2014 financement indemnit\u00e9 r\u00e9siliation SEMA", "theme": "ZAC / SEMA", "mandat": "2020-2026", "pdf": null, "pv": "https://www.mairie-laclayette.fr/?jet_download=724", "note": "Laroche vote en faveur depuis l\u2019opposition. N\u00b0 exact \u00e0 v\u00e9rifier dans le PV (CM du 21 juin 2021)." }
+  ],
+  "budget": {
+    "annees": [2020, 2021, 2022, 2023, 2024],
+    "fonctionnement_depenses": [2510000, 2620000, 2710000, 2780000, 2840000],
+    "fonctionnement_recettes": [2680000, 2710000, 2780000, 2830000, 2910000],
+    "investissement_depenses": [890000, 1450000, 980000, 1050000, 1120000],
+    "dette_capital": [3200000, 4100000, 3950000, 3820000, 3710000]
+  },
+  "engagements": [
+    {
+      "id": "E01",
+      "titre": "Revitalisation du centre-bourg",
+      "detail": "Am\u00e9nagement des espaces publics, commerces de proximit\u00e9, attractivit\u00e9 r\u00e9sidentielle. Engag\u00e9 sous le mandat Lavenir (place de Lattre, place de la Poste). Aucune d\u00e9cision propre du mandat Vaizand \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2025-17", "D2025-62", "D2026-04"]
+    },
+    {
+      "id": "E02",
+      "titre": "Maintien et d\u00e9veloppement de l'offre m\u00e9dicale",
+      "detail": "Dispositif Docteur Junior vot\u00e9 le 9 mars 2026 par le mandat Lavenir sortant, transmis au mandat Vaizand. Aucune d\u00e9cision propre du nouveau conseil \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2026-20"]
+    },
+    {
+      "id": "E03",
+      "titre": "Programme de voirie",
+      "detail": "Chantiers engag\u00e9s sous le mandat Lavenir. Aucune d\u00e9lib\u00e9ration propre du mandat Vaizand sur ce sujet \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2025-17"]
+    },
+    {
+      "id": "E04",
+      "titre": "Transparence budg\u00e9taire",
+      "detail": "Aucune d\u00e9lib\u00e9ration ni initiative observ\u00e9e sur ce point sous le mandat Vaizand.",
+      "statut": "pending",
+      "label": "Non observ\u00e9",
+      "sources": []
+    },
+    {
+      "id": "E05",
+      "titre": "Soutien au tissu associatif",
+      "detail": "Subventions aux associations vot\u00e9es le 9 mars 2026 par le mandat Lavenir sortant. Aucune d\u00e9cision propre du mandat Vaizand \u00e0 ce jour.",
+      "statut": "herite",
+      "label": "H\u00e9rit\u00e9 du mandat pr\u00e9c\u00e9dent",
+      "sources": ["D2026-17"]
+    }
+  ],
+  "sema_timeline": [
+    {
+      "date": "2012",
+      "titre": "Signature du contrat de concession ZAC Centre-Ville",
+      "corps": "La commune confie \u00e0 la SEMA (soci\u00e9t\u00e9 d'\u00e9conomie mixte d'am\u00e9nagement) le d\u00e9veloppement de la ZAC Centre-Ville. Daniel Laroche si\u00e8ge alors comme simple conseiller municipal, pas encore maire.",
+      "type": "neutral",
+      "source": ""
+    },
+    {
+      "date": "2014",
+      "titre": "Daniel Laroche \u00e9lu maire \u2014 Gr\u00e9gory Vaizand nomm\u00e9 adjoint aux finances",
+      "corps": "Laroche remporte les \u00e9lections municipales et devient maire de La Clayette. Gr\u00e9gory Vaizand est nomm\u00e9 adjoint aux finances dans cette nouvelle \u00e9quipe. Le contrat SEMA est en cours d\u2019ex\u00e9cution.",
+      "type": "neutral",
+      "source": ""
+    },
+    {
+      "date": "2020",
+      "titre": "Changement de majorit\u00e9 \u2014 Christian Lavenir \u00e9lu maire",
+      "corps": "Christian Lavenir remporte les \u00e9lections municipales. Laroche passe en opposition avec son groupe.",
+      "type": "neutral",
+      "source": ""
+    },
+    {
+      "date": "21 juin 2021",
+      "titre": "R\u00e9siliation du contrat SEMA \u2014 indemnit\u00e9 significative",
+      "corps": "Le conseil municipal vote la r\u00e9siliation du contrat de concession. Une indemnit\u00e9 significative est vers\u00e9e au concessionnaire. Laroche, conseiller d\u2019opposition, vote en faveur de la r\u00e9siliation.",
+      "type": "alert",
+      "source": "PV du CM du 21 juin 2021"
+    },
+    {
+      "date": "21 juin 2021",
+      "titre": "Emprunt de 1\u00a0250\u00a0000\u00a0\u20ac pour financer la r\u00e9siliation",
+      "corps": "Un emprunt de 1,25\u00a0M\u20ac est contract\u00e9 pour couvrir le co\u00fbt de la r\u00e9siliation. Laroche vote \u00e9galement en faveur de cet emprunt.",
+      "type": "alert",
+      "source": "PV du CM du 21 juin 2021"
+    },
+    {
+      "date": "15 mars 2026",
+      "titre": "Vaizand \u00e9lu maire \u2014 Laroche nomm\u00e9 1er adjoint",
+      "corps": "Apr\u00e8s les \u00e9lections du 15 mars 2026, Gr\u00e9gory Vaizand devient maire. Daniel Laroche, qui avait vot\u00e9 la r\u00e9siliation SEMA et l\u2019emprunt associ\u00e9 depuis l\u2019opposition en 2021, est nomm\u00e9 premier adjoint.",
+      "type": "alert",
+      "source": ""
+    }
+  ],
+  "publications": [
+    {
+      "id": "PUB03",
+      "date": "2026-03-18",
+      "type": "editorial",
+      "titre": "Affaire SEMA\u00a0: chronologie d\u2019une d\u00e9cision co\u00fbteuse",
+      "extrait": "Retour sur la r\u00e9siliation du contrat de concession ZAC Centre-Ville en 2021, ses co\u00fbts, et les positions des acteurs \u00e0 chaque \u00e9tape.",
+      "lien": null
+    },
+    {
+      "id": "PUB02",
+      "date": "2026-03-16",
+      "type": "official",
+      "titre": "Cons\u00e9quences de passation\u00a0: quelles d\u00e9cisions h\u00e9rite le mandat Vaizand\u00a0?",
+      "extrait": "Analyse des d\u00e9lib\u00e9rations du 9 mars 2026, vot\u00e9es par le mandat Lavenir et transmises au nouveau conseil.",
+      "lien": null
+    },
+    {
+      "id": "PUB01",
+      "date": "2026-03-10",
+      "type": "official",
+      "titre": "Comment lire un budget communal\u00a0? Guide pratique",
+      "extrait": "Section fonctionnement, section investissement, exc\u00e9dent, emprunt\u2026 Tout comprendre en 5 minutes.",
+      "lien": null
+    }
+  ],
+  "faq": [
+    {
+      "q": "Qu'est-ce qu'un conseil municipal ?",
+      "r": "Le conseil municipal est l'assembl\u00e9e \u00e9lue de la commune. \u00c0 La Clayette, il comprend 19 conseillers \u00e9lus pour 6 ans. Il vote le budget, les d\u00e9lib\u00e9rations et d\u00e9finit les orientations de la politique communale. Le maire est le chef de l'ex\u00e9cutif."
+    },
+    {
+      "q": "Qu'est-ce qu'une d\u00e9lib\u00e9ration ?",
+      "r": "Une d\u00e9lib\u00e9ration est une d\u00e9cision officielle prise par le conseil municipal apr\u00e8s vote. Elle est consign\u00e9e dans un proc\u00e8s-verbal (PV) public. Toute d\u00e9cision engageant la commune (d\u00e9pense, convention, march\u00e9\u2026) doit faire l'objet d'une d\u00e9lib\u00e9ration."
+    },
+    {
+      "q": "Comment est constitu\u00e9 le budget d'une commune ?",
+      "r": "Le budget municipal est divis\u00e9 en deux sections : la section de fonctionnement (d\u00e9penses courantes : salaires, charges, subventions) et la section d'investissement (travaux, \u00e9quipements). Les recettes proviennent principalement de la dotation de l'\u00c9tat (DGF) et des taxes locales."
+    },
+    {
+      "q": "Qu'est-ce qu'une ZAC ?",
+      "r": "Une Zone d'Am\u00e9nagement Concert\u00e9 (ZAC) est un outil d'urbanisme permettant \u00e0 une collectivit\u00e9 de ma\u00eetriser l'am\u00e9nagement d'un secteur. La commune peut en confier la r\u00e9alisation \u00e0 un op\u00e9rateur priv\u00e9 ou semi-public via un contrat de concession."
+    },
+    {
+      "q": "Pourquoi ce site existe-t-il ?",
+      "r": "Ce site est une initiative citoyenne personnelle, ind\u00e9pendante de toute liste ou parti. Son objectif est de rendre les d\u00e9cisions municipales accessibles \u00e0 tous, en fournissant les sources officielles de chaque donn\u00e9e affich\u00e9e."
+    },
+    {
+      "q": "Les donn\u00e9es de ce site sont-elles fiables ?",
+      "r": "Chaque donn\u00e9e factuelle est li\u00e9e \u00e0 sa source officielle (PV de conseil, API DGFiP). Les analyses sont clairement signal\u00e9es comme telles et sign\u00e9es. En cas d'erreur signal\u00e9e avec justificatif, une correction est publi\u00e9e imm\u00e9diatement avec mention."
+    }
+  ]
+}
+</script>
+
+<!-- ══════════════════ SITE HEADER ══════════════════ -->
+<header id="site-header">
+  <div class="header-inner">
+    <a class="site-brand" href="#" onclick="showTab('accueil');return false;">
+      <span class="brand-name">La Clayette en clair</span>
+      <span class="brand-sep">·</span>
+      <span class="brand-domain">mairie-ouverte.fr</span>
+    </a>
+    <span class="header-badge">Initiative citoyenne indépendante</span>
+  </div>
+</header>
+
+<!-- ══════════════════ NAVIGATION ══════════════════ -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-tab active" onclick="showTab('accueil')" data-tab="accueil">
+      <span class="tab-icon">🏠</span> Accueil
+    </div>
+    <div class="nav-tab" onclick="showTab('donnees')" data-tab="donnees">
+      <span class="tab-icon">📊</span> Données
+    </div>
+    <div class="nav-tab" onclick="showTab('comprendre')" data-tab="comprendre">
+      <span class="tab-icon">📖</span> Comprendre
+    </div>
+    <div class="nav-tab" onclick="showTab('suivi')" data-tab="suivi">
+      <span class="tab-icon">📋</span> Suivi du mandat
+    </div>
+    <div class="nav-tab" onclick="showTab('publications')" data-tab="publications">
+      <span class="tab-icon">✍️</span> Publications
+    </div>
+    <div class="nav-tab" onclick="showTab('apropos')" data-tab="apropos">
+      <span class="tab-icon">ℹ️</span> À propos
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ PAGE : ACCUEIL ══════════════════ -->
+<div id="page-accueil" class="page active">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-eyebrow">La Clayette · Saône-et-Loire · 71133</div>
+      <h1 class="hero-title">Les décisions de votre commune,<br>sans filtre ni interprétation.</h1>
+      <p class="hero-sub">Toutes les données présentées sont issues de sources officielles : procès-verbaux du conseil municipal et données DGFiP. Chaque chiffre est lié à son document d'origine.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showTab('donnees')">📊 Explorer les données</button>
+        <button class="btn btn-ghost" onclick="showTab('comprendre')">📖 Comprendre le conseil</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="update-banner">
+      🕐 Dernière mise à jour : <strong>18 mars 2026</strong> — 301 délibérations indexées, données financières 2020–2024
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-grid" id="kpi-grid">
+      <!-- filled by JS -->
+    </div>
+
+    <!-- Two columns -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;" class="two-col">
+
+      <!-- Last deliberations -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Dernières délibérations</span>
+          <button class="btn btn-ghost btn-sm" onclick="showTab('donnees')">Toutes →</button>
+        </div>
+        <div id="last-delibs" style="font-size:.82rem;">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Last publication -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Dernières publications</span>
+          <button class="btn btn-ghost btn-sm" onclick="showTab('publications')">Toutes →</button>
+        </div>
+        <div id="last-pubs" style="font-size:.82rem; padding:.25rem 0;">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Charter reminder -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" class="two-col">
+      <div class="method-box">
+        <h4>📊 Donnée officielle</h4>
+        <p>Les contenus marqués de ce badge proviennent exclusivement de sources officielles : procès-verbaux de conseil municipal, données DGFiP, publications légales. Aucune interprétation n'y est ajoutée.</p>
+      </div>
+      <div class="editorial-box">
+        <h4>✍️ Analyse citoyenne</h4>
+        <p>Les contenus marqués de ce badge sont des analyses signées par le concepteur du site, en tant que citoyen. Ils sont clairement distincts des données factuelles et toujours sourcés.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE : DONNÉES ══════════════════ -->
+<div id="page-donnees" class="page">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-eyebrow">Données officielles</div>
+      <h1 class="hero-title">Délibérations, budgets<br>et comparaisons de mandats</h1>
+      <p class="hero-sub">Toutes les sources sont liées aux procès-verbaux officiels de la mairie et aux données DGFiP.</p>
+    </div>
+  </div>
+
+  <div class="sub-tabs">
+    <div class="sub-tab active" onclick="showSubTab('donnees','delibs')" data-subtab="delibs">Délibérations</div>
+    <div class="sub-tab" onclick="showSubTab('donnees','budgets')" data-subtab="budgets">Budgets</div>
+    <div class="sub-tab" onclick="showSubTab('donnees','comparaison')" data-subtab="comparaison">Comparaison mandats</div>
+  </div>
+
+  <!-- DÉLIBÉRATIONS -->
+  <div id="sub-donnees-delibs" class="sub-page active">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Délibérations du conseil municipal</div>
+          <div class="section-sub">Source : procès-verbaux officiels — mairie-laclayette.fr</div>
+        </div>
+        <span class="badge-official">📊 Donnée officielle</span>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="search-delib" placeholder="Rechercher dans les délibérations…" oninput="filterDelibs()">
+        <select id="filter-theme" onchange="filterDelibs()">
+          <option value="">Tous les thèmes</option>
+        </select>
+        <select id="filter-mandat" onchange="filterDelibs()">
+          <option value="">Tous les mandats</option>
+          <option value="2020-2026">Mandat 2020–2026</option>
+          <option value="2026-2032">Mandat 2026–2032</option>
+        </select>
+        <span class="result-count" id="delib-count"></span>
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()">⬇ CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="delib-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>N°</th>
+              <th>Objet</th>
+              <th>Thème</th>
+              <th>Mandat</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="delib-tbody">
+            <!-- filled by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUDGETS -->
+  <div id="sub-donnees-budgets" class="sub-page">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Évolution du budget communal</div>
+          <div class="section-sub">Source : données DGFiP / data.economie.gouv.fr</div>
+        </div>
+        <span class="badge-official">📊 Donnée officielle</span>
+      </div>
+
+      <div class="chart-grid" style="margin-bottom:1.5rem;">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Section de fonctionnement (€)</span>
+          </div>
+          <div class="card-body">
+            <div class="chart-wrap">
+              <canvas id="chart-fonctionnement"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Section d'investissement (€)</span>
+          </div>
+          <div class="card-body">
+            <div class="chart-wrap">
+              <canvas id="chart-investissement"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Encours de dette totale (€)</span>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrap" style="height:200px;">
+            <canvas id="chart-dette"></canvas>
+          </div>
+          <p style="font-size:.75rem;color:var(--text-secondary);margin-top:.75rem;">
+            ⚠️ L'emprunt de 1 250 000 € contracté en juin 2021 pour financer la résiliation SEMA est visible dans le pic 2021.
+            <button class="btn btn-ghost btn-sm" style="margin-left:.5rem;" onclick="showSubTab('suivi','sema')">Voir l'analyse SEMA →</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARAISON MANDATS -->
+  <div id="sub-donnees-comparaison" class="sub-page">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Comparaison des mandats</div>
+          <div class="section-sub">Données DGFiP — indicateurs clés par mandat</div>
+        </div>
+        <span class="badge-official">📊 Donnée officielle</span>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-body">
+          <table style="width:100%;font-size:.85rem;">
+            <thead>
+              <tr>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:left;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Indicateur</th>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:right;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Laroche (2014–2020)</th>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:right;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Lavenir (2020–2026)</th>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:right;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Vaizand (2026–2032)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:.65rem 1rem;font-weight:500;">Dépenses de fonctionnement cumulées</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~14,8 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~16,5 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;color:var(--text-secondary);">En cours</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:.65rem 1rem;font-weight:500;">Dépenses d'investissement cumulées</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~4,2 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~5,5 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;color:var(--text-secondary);">En cours</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:.65rem 1rem;font-weight:500;">Encours de dette (début de mandat)</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~2,9 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~3,2 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~3,7 M€</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:.65rem 1rem;font-weight:500;">Encours de dette (fin de mandat)</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~3,2 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;">~3,7 M€</td>
+                <td style="padding:.65rem 1rem;text-align:right;color:var(--text-secondary);">—</td>
+              </tr>
+              <tr>
+                <td style="padding:.65rem 1rem;font-weight:500;">Nombre de délibérations</td>
+                <td style="padding:.65rem 1rem;text-align:right;">N/D</td>
+                <td style="padding:.65rem 1rem;text-align:right;">301</td>
+                <td style="padding:.65rem 1rem;text-align:right;color:var(--text-secondary);">En cours</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size:.73rem;color:var(--text-secondary);margin-top:.75rem;padding:.75rem 1rem 0;border-top:1px solid var(--border);">
+            Les données du mandat Laroche (2014–2020) seront complétées dès leur extraction. Source : DGFiP / data.economie.gouv.fr
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════ PAGE : COMPRENDRE ══════════════════ -->
+<div id="page-comprendre" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-eyebrow">Guide citoyen</div>
+      <h1 class="hero-title">Comprendre le fonctionnement<br>municipal</h1>
+      <p class="hero-sub">Tout ce qu'il faut savoir pour lire les données de votre commune.</p>
+    </div>
+  </div>
+
+  <div class="sub-tabs">
+    <div class="sub-tab active" onclick="showSubTab('comprendre','fonctionnement')" data-subtab="fonctionnement">Fonctionnement municipal</div>
+    <div class="sub-tab" onclick="showSubTab('comprendre','faq')" data-subtab="faq">FAQ</div>
+  </div>
+
+  <!-- FONCTIONNEMENT -->
+  <div id="sub-comprendre-fonctionnement" class="sub-page active">
+    <div class="container-narrow">
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header"><span class="card-title">Les acteurs du conseil municipal</span></div>
+        <div class="card-body" style="font-size:.88rem;line-height:1.7;color:var(--text-secondary);">
+          <p style="margin-bottom:.75rem;">Le <strong style="color:var(--text);">conseil municipal</strong> de La Clayette comprend <strong style="color:var(--text);">19 conseillers</strong> élus au suffrage universel direct pour un mandat de 6 ans. Il se réunit en séance publique au minimum une fois par mois.</p>
+          <p style="margin-bottom:.75rem;">Le <strong style="color:var(--text);">maire</strong> est élu par le conseil municipal lors de la première séance suivant les élections. Il préside le conseil, dirige l'administration communale et représente la commune. Il est assisté d'<strong style="color:var(--text);">adjoints</strong> délégués à des domaines spécifiques (finances, urbanisme, sports…).</p>
+          <p>La <strong style="color:var(--text);">majorité</strong> dispose du pouvoir de vote. L'<strong style="color:var(--text);">opposition</strong> peut s'exprimer, poser des questions, et voter différemment — mais ses votes ne sont pas contraignants si la majorité est unie.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header"><span class="card-title">Le cycle budgétaire</span></div>
+        <div class="card-body" style="font-size:.88rem;line-height:1.7;color:var(--text-secondary);">
+          <div style="display:flex;flex-direction:column;gap:.75rem;">
+            <div style="display:flex;gap:.75rem;align-items:flex-start;">
+              <div style="width:28px;height:28px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--accent);flex-shrink:0;">1</div>
+              <div><strong style="color:var(--text);">Débat d'orientations budgétaires</strong> (automne)<br>Le conseil discute les grandes lignes avant de voter le budget.</div>
+            </div>
+            <div style="display:flex;gap:.75rem;align-items:flex-start;">
+              <div style="width:28px;height:28px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--accent);flex-shrink:0;">2</div>
+              <div><strong style="color:var(--text);">Vote du budget primitif</strong> (automne/hiver)<br>Le budget de l'année N+1 est voté. Il est opposable dès le 1er janvier.</div>
+            </div>
+            <div style="display:flex;gap:.75rem;align-items:flex-start;">
+              <div style="width:28px;height:28px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--accent);flex-shrink:0;">3</div>
+              <div><strong style="color:var(--text);">Budgets supplémentaires</strong> (en cours d'année)<br>Des ajustements peuvent être votés si nécessaire.</div>
+            </div>
+            <div style="display:flex;gap:.75rem;align-items:flex-start;">
+              <div style="width:28px;height:28px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--accent);flex-shrink:0;">4</div>
+              <div><strong style="color:var(--text);">Compte administratif</strong> (printemps suivant)<br>Bilan réel de l'année écoulée : dépenses et recettes effectives.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">Où trouver les documents officiels ?</span></div>
+        <div class="card-body" style="font-size:.88rem;line-height:1.7;color:var(--text-secondary);">
+          <p style="margin-bottom:.75rem;">Les procès-verbaux (PV) de conseil municipal sont des documents publics. Ils doivent être <strong style="color:var(--text);">affichés en mairie</strong> et sont généralement disponibles sur le site officiel de la commune.</p>
+          <p style="margin-bottom:1rem;">Les données financières consolidées sont disponibles sur <strong style="color:var(--text);">data.economie.gouv.fr</strong> via l'API DGFiP, pour toutes les communes de France.</p>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+            <a href="https://www.mairie-laclayette.fr" target="_blank" class="btn btn-secondary btn-sm">🏛 Site officiel mairie</a>
+            <a href="https://data.economie.gouv.fr" target="_blank" class="btn btn-ghost btn-sm">📈 data.economie.gouv.fr</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div id="sub-comprendre-faq" class="sub-page">
+    <div class="container-narrow">
+      <div class="section-header">
+        <div class="section-title">Questions fréquentes</div>
+      </div>
+      <div class="card">
+        <div class="card-body" style="padding-top:.25rem;padding-bottom:.25rem;">
+          <div id="faq-list"><!-- filled by JS --></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════ PAGE : SUIVI DU MANDAT ══════════════════ -->
+<div id="page-suivi" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-eyebrow">Suivi du mandat 2026–2032</div>
+      <h1 class="hero-title">Engagements, investissements<br>et décisions clés</h1>
+      <p class="hero-sub">Comparaison entre les engagements de campagne et les décisions observées.</p>
+    </div>
+  </div>
+
+  <div class="sub-tabs">
+    <div class="sub-tab active" onclick="showSubTab('suivi','engagements')" data-subtab="engagements">Engagements</div>
+    <div class="sub-tab" onclick="showSubTab('suivi','sema')" data-subtab="sema">Affaire SEMA</div>
+    <div class="sub-tab" onclick="showSubTab('suivi','investissements')" data-subtab="investissements">Investissements</div>
+  </div>
+
+  <!-- ENGAGEMENTS -->
+  <div id="sub-suivi-engagements" class="sub-page active">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Suivi des engagements de campagne</div>
+          <div class="section-sub">Promesses formulées lors de la campagne 2026 — mise à jour au fil des délibérations</div>
+        </div>
+        <span class="badge-editorial">✍️ Analyse citoyenne</span>
+      </div>
+      <div class="editorial-box">
+        <h4>✍️ Méthodologie de suivi</h4>
+        <p>Les engagements listés ci-dessous sont extraits des documents de campagne publics. Le mandat Vaizand ayant débuté le 15 mars 2026, aucune délibération propre n'a encore été votée. Les items marqués <strong>« Hérité »</strong> correspondent à des décisions engagées sous le mandat précédent (Lavenir 2020–2026) et transmises au nouveau conseil. Ce suivi sera mis à jour au fil des séances.</p>
+      </div>
+      <div class="eng-grid" id="eng-grid"><!-- filled by JS --></div>
+    </div>
+  </div>
+
+  <!-- SEMA -->
+  <div id="sub-suivi-sema" class="sub-page">
+    <div class="container-narrow">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Affaire SEMA — ZAC Centre-Ville</div>
+          <div class="section-sub">Chronologie documentée de la résiliation du contrat de concession</div>
+        </div>
+        <span class="badge-editorial">✍️ Analyse citoyenne</span>
+      </div>
+      <div class="editorial-box">
+        <h4>✍️ Note éditoriale</h4>
+        <p>Cette chronologie est construite à partir de délibérations officielles et de sources publiques. Les faits sont sourcés ; les commentaires interprétatifs sont explicitement signalés. Toute contestation factuelle motivée entraîne une correction publiée.</p>
+      </div>
+      <div class="timeline" id="sema-timeline"><!-- filled by JS --></div>
+    </div>
+  </div>
+
+  <!-- INVESTISSEMENTS -->
+  <div id="sub-suivi-investissements" class="sub-page">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Investissements majeurs</div>
+          <div class="section-sub">Projets votés en conseil municipal depuis 2020</div>
+        </div>
+        <span class="badge-official">📊 Donnée officielle</span>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <table style="width:100%;font-size:.85rem;border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:left;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Projet</th>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:left;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Année</th>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:right;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Montant (€)</th>
+                <th style="background:var(--bg-subtle);padding:.65rem 1rem;text-align:left;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:.65rem 1rem;font-weight:500;">Résiliation contrat SEMA (indemnité)</td>
+                <td style="padding:.65rem 1rem;">2021</td>
+                <td style="padding:.65rem 1rem;text-align:right;font-weight:600;color:var(--alert);">1 250 000</td>
+                <td style="padding:.65rem 1rem;"><a href="https://www.mairie-laclayette.fr/mairie-de-la-clayette/comptes-rendus-de-conseils/" target="_blank" class="btn btn-ghost btn-sm">📄 PV (n° à vérifier)</a></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:.65rem 1rem;font-weight:500;">Requalification Place de Lattre de Tassigny</td>
+                <td style="padding:.65rem 1rem;">2025</td>
+                <td style="padding:.65rem 1rem;text-align:right;">En cours</td>
+                <td style="padding:.65rem 1rem;"><a href="https://www.mairie-laclayette.fr/wp-content/uploads/2025/05/D2025-17-PLACE-DE-LATTRE_ATTRIBUTION-MARCHES.pdf" target="_blank" class="btn btn-ghost btn-sm">📄 Délib. 2025/17</a></td>
+              </tr>
+              <tr>
+                <td style="padding:.65rem 1rem;font-weight:500;">Dispositif Docteur Junior</td>
+                <td style="padding:.65rem 1rem;">2026</td>
+                <td style="padding:.65rem 1rem;text-align:right;">À préciser</td>
+                <td style="padding:.65rem 1rem;"><a href="https://www.mairie-laclayette.fr/wp-content/uploads/2026/03/D2026-20-VALIDATION-PRCPE-DOCTEUR-JUNIOR.pdf" target="_blank" class="btn btn-ghost btn-sm">📄 Délib. 2026/20</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════ PAGE : PUBLICATIONS ══════════════════ -->
+<div id="page-publications" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-eyebrow">Publications</div>
+      <h1 class="hero-title">Pédagogie, analyses<br>et constats</h1>
+      <p class="hero-sub">Chaque publication indique clairement si elle restitue des données officielles ou exprime une analyse citoyenne signée.</p>
+    </div>
+  </div>
+
+  <div class="container-narrow" style="padding-top:1.5rem;">
+    <div class="method-box" style="margin-bottom:1.5rem;">
+      <h4>Charte de publication</h4>
+      <p>Les publications <span style="font-weight:600;">📊 Données officielles</span> restituent uniquement des faits sourcés sans commentaire. Les publications <span style="font-weight:600;">✍️ Analyse citoyenne</span> sont signées et distinguent clairement faits et interprétations. Toute correction factuelle motivée est publiée sous 48h.</p>
+    </div>
+    <div class="pub-grid" id="pub-grid"><!-- filled by JS --></div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE : À PROPOS ══════════════════ -->
+<div id="page-apropos" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-eyebrow">Transparence & Méthodologie</div>
+      <h1 class="hero-title">À propos de ce site</h1>
+      <p class="hero-sub">Qui fait ce site, pourquoi, et comment les données sont collectées.</p>
+    </div>
+  </div>
+
+  <div class="container-narrow">
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-header"><span class="card-title">Initiative citoyenne indépendante</span></div>
+      <div class="card-body" style="font-size:.88rem;line-height:1.75;color:var(--text-secondary);">
+        <p style="margin-bottom:.75rem;">Ce site est une initiative personnelle d'un <strong style="color:var(--text);">citoyen de La Clayette</strong>, sans affiliation à aucun parti, liste ou mouvement politique. Il n'est financé par aucune organisation et ne perçoit aucune publicité.</p>
+        <p>Son ambition : rendre <strong style="color:var(--text);">accessibles et compréhensibles</strong> les décisions prises en conseil municipal et les données financières de la commune, sans les déformer ni les interpréter sans le signaler clairement.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-header"><span class="card-title">Sources de données</span></div>
+      <div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:.75rem;font-size:.85rem;">
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1rem;width:24px;text-align:center;flex-shrink:0;">🏛</span>
+            <div><strong>Procès-verbaux du conseil municipal</strong><br><span style="color:var(--text-secondary);">Site officiel de la mairie de La Clayette — mairie-laclayette.fr. Chaque délibération est liée à son PDF source.</span></div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1rem;width:24px;text-align:center;flex-shrink:0;">📊</span>
+            <div><strong>Données financières DGFiP</strong><br><span style="color:var(--text-secondary);">API data.economie.gouv.fr — données publiques pour toutes les communes. Extraction par script Python.</span></div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="font-size:1rem;width:24px;text-align:center;flex-shrink:0;">🗳</span>
+            <div><strong>Résultats électoraux</strong><br><span style="color:var(--text-secondary);">Ministère de l'Intérieur / data.gouv.fr.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-header"><span class="card-title">Charte éditoriale</span></div>
+      <div class="card-body" style="font-size:.88rem;line-height:1.75;color:var(--text-secondary);">
+        <div style="display:flex;gap:.75rem;margin-bottom:.75rem;padding:.75rem;background:var(--official-bg);border-radius:4px;border:1px solid var(--official-border);">
+          <span>📊</span>
+          <div><strong style="color:var(--official-fg);">Donnée officielle</strong><br><span style="color:var(--official-fg);">Restitution factuelle de sources publiques. Aucun commentaire ajouté. Source systématiquement liée.</span></div>
+        </div>
+        <div style="display:flex;gap:.75rem;padding:.75rem;background:var(--editorial-bg);border-radius:4px;border:1px solid var(--editorial-border);margin-bottom:.75rem;">
+          <span>✍️</span>
+          <div><strong style="color:var(--editorial-fg);">Analyse citoyenne</strong><br><span style="color:var(--editorial-fg);">Analyse personnelle, signée. Clairement distinguée des données officielles. Toujours sourcée.</span></div>
+        </div>
+        <p>En cas d'erreur factuelle signalée avec justificatif, une <strong style="color:var(--text);">correction est publiée</strong> avec mention explicite de la modification apportée.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">Limites et avertissements</span></div>
+      <div class="card-body" style="font-size:.88rem;line-height:1.75;color:var(--text-secondary);">
+        <ul style="padding-left:1.25rem;display:flex;flex-direction:column;gap:.4rem;">
+          <li>Les données financières consolidées DGFiP peuvent avoir un décalage de 6 à 12 mois.</li>
+          <li>Les procès-verbaux sont retranscrits fidèlement ; toute erreur de la source originale est signalée.</li>
+          <li>Ce site n'est pas associé à la mairie de La Clayette ni à aucun groupe politique.</li>
+          <li>L'auteur agit en tant que citoyen, sous sa responsabilité personnelle.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer style="background:var(--text);color:#9CA3AF;padding:1.75rem 1.5rem;margin-top:3rem;font-size:.78rem;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+    <div>
+      <strong style="color:#fff;font-family:var(--font-serif);">La Clayette en clair</strong>
+      <span style="margin:0 .5rem;opacity:.4;">·</span>
+      <span>mairie-ouverte.fr</span>
+      <span style="margin:0 .5rem;opacity:.4;">·</span>
+      Initiative citoyenne indépendante
+    </div>
+    <div style="display:flex;gap:1rem;">
+      <a href="https://www.mairie-laclayette.fr" target="_blank" style="color:#9CA3AF;text-decoration:none;">Site officiel</a>
+      <a href="https://data.economie.gouv.fr" target="_blank" style="color:#9CA3AF;text-decoration:none;">DGFiP data</a>
+      <span style="cursor:pointer;color:#9CA3AF;" onclick="showTab('apropos')">À propos</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ JAVASCRIPT ══════════════════ -->
+<script>
+(function() {
+
+// ─── LOAD DATA ──────────────────────────────────────
+var DATA = JSON.parse(document.getElementById('site-data').textContent);
+
+// ─── TAB NAVIGATION ─────────────────────────────────
+window.showTab = function(name) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nav-tab').forEach(function(t) { t.classList.remove('active'); });
+  var p = document.getElementById('page-' + name);
+  if (p) p.classList.add('active');
+  var t = document.querySelector('[data-tab="' + name + '"]');
+  if (t) t.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (name === 'donnees' && !chartsBuilt) { buildCharts(); chartsBuilt = true; }
+};
+
+window.showSubTab = function(parent, name) {
+  var tabs = document.querySelectorAll('#page-' + parent + ' .sub-tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  var active = document.querySelector('#page-' + parent + ' [data-subtab="' + name + '"]');
+  if (active) active.classList.add('active');
+  var pages = document.querySelectorAll('#page-' + parent + ' .sub-page');
+  pages.forEach(function(p) { p.classList.remove('active'); });
+  var sp = document.getElementById('sub-' + parent + '-' + name);
+  if (sp) sp.classList.add('active');
+  if (parent === 'donnees' && name === 'budgets' && !chartsBuilt) { buildCharts(); chartsBuilt = true; }
+};
+
+// ─── HELPERS ────────────────────────────────────────
+function fmt(n) {
+  return new Intl.NumberFormat('fr-FR').format(n);
+}
+function fmtDate(s) {
+  var d = new Date(s + 'T00:00:00');
+  return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+// ─── KPI CARDS ──────────────────────────────────────
+var kpiDefs = [
+  { label: '\u00c9l\u00e8vements index\u00e9s', value: fmt(DATA.kpi.deliberations_total), sub: 'D\u00e9lib\u00e9rations 2020\u20132026' },
+  { label: 'Fonctionnement ' + DATA.kpi.annee_reference, value: fmt(DATA.kpi.budget_fonctionnement_2024) + '\u00a0\u20ac', sub: 'D\u00e9penses r\u00e9elles' },
+  { label: 'Investissement ' + DATA.kpi.annee_reference, value: fmt(DATA.kpi.budget_investissement_2024) + '\u00a0\u20ac', sub: 'D\u00e9penses r\u00e9elles' },
+  { label: 'Dette / habitant', value: fmt(DATA.kpi.dette_par_habitant) + '\u00a0\u20ac', sub: 'Estim. ' + DATA.kpi.annee_reference }
+];
+var kpiGrid = document.getElementById('kpi-grid');
+kpiDefs.forEach(function(k) {
+  var d = document.createElement('div');
+  d.className = 'kpi-card';
+  d.innerHTML = '<div class="kpi-label">' + k.label + '</div>'
+    + '<div class="kpi-value">' + k.value + '</div>'
+    + '<div class="kpi-sub">' + k.sub + '</div>';
+  kpiGrid.appendChild(d);
+});
+
+// ─── LAST DELIBS ────────────────────────────────────
+var lastDelibs = document.getElementById('last-delibs');
+DATA.deliberations.slice(0, 5).forEach(function(d, i) {
+  var div = document.createElement('div');
+  div.style.cssText = 'padding:.75rem 1.25rem;' + (i < 4 ? 'border-bottom:1px solid var(--border);' : '');
+  div.innerHTML = '<div style="font-size:.8rem;color:var(--text-secondary);margin-bottom:.15rem;">'
+    + fmtDate(d.date) + ' \u00b7 <span class="badge-mandat">' + d.mandat + '</span></div>'
+    + '<div style="font-weight:500;font-size:.84rem;line-height:1.35;">' + d.objet + '</div>';
+  lastDelibs.appendChild(div);
+});
+
+// ─── LAST PUBS ───────────────────────────────────────
+var lastPubs = document.getElementById('last-pubs');
+DATA.publications.slice(0, 3).forEach(function(p, i) {
+  var div = document.createElement('div');
+  div.style.cssText = 'padding:.75rem 1.25rem;display:flex;gap:.75rem;align-items:flex-start;'
+    + (i < 2 ? 'border-bottom:1px solid var(--border);' : '');
+  var icon = p.type === 'editorial' ? '\u270d\ufe0f' : '\ud83d\udcca';
+  var badgeClass = p.type === 'editorial' ? 'badge-editorial' : 'badge-official';
+  var badgeTxt = p.type === 'editorial' ? '\u270d\ufe0f Analyse' : '\ud83d\udcca Donn\u00e9es';
+  div.innerHTML = '<div style="font-size:1.1rem;width:28px;text-align:center;flex-shrink:0;margin-top:.1rem;">' + icon + '</div>'
+    + '<div><div style="margin-bottom:.2rem;"><span class="' + badgeClass + '">' + badgeTxt + '</span>'
+    + ' <span style="font-size:.72rem;color:var(--text-secondary);">' + fmtDate(p.date) + '</span></div>'
+    + '<div style="font-weight:600;font-size:.84rem;line-height:1.35;">' + p.titre + '</div></div>';
+  lastPubs.appendChild(div);
+});
+
+// ─── DELIBERATIONS TABLE ────────────────────────────
+var allDelibs = DATA.deliberations.slice();
+var themes = {};
+allDelibs.forEach(function(d) { themes[d.theme] = true; });
+var themeSelect = document.getElementById('filter-theme');
+Object.keys(themes).sort().forEach(function(t) {
+  var o = document.createElement('option');
+  o.value = t; o.textContent = t;
+  themeSelect.appendChild(o);
+});
+
+window.filterDelibs = function() {
+  var search = document.getElementById('search-delib').value.toLowerCase();
+  var theme = document.getElementById('filter-theme').value;
+  var mandat = document.getElementById('filter-mandat').value;
+  var filtered = allDelibs.filter(function(d) {
+    var matchSearch = !search || d.objet.toLowerCase().indexOf(search) !== -1 || d.numero.toLowerCase().indexOf(search) !== -1;
+    var matchTheme = !theme || d.theme === theme;
+    var matchMandat = !mandat || d.mandat === mandat;
+    return matchSearch && matchTheme && matchMandat;
+  });
+  renderDelibs(filtered);
+};
+
+function renderDelibs(list) {
+  var tbody = document.getElementById('delib-tbody');
+  tbody.innerHTML = '';
+  list.forEach(function(d) {
+    var tr = document.createElement('tr');
+    var noteHtml = d.note ? '<div style="font-size:.7rem;color:var(--text-secondary);margin-top:.2rem;font-style:italic;">' + d.note + '</div>' : '';
+    var pdfBtn = d.pdf
+      ? '<a href="' + d.pdf + '" target="_blank" class="btn btn-ghost btn-sm" style="margin-bottom:.2rem;">\ud83d\udcc4 D\u00e9lib.</a>'
+      : '<span class="btn btn-ghost btn-sm" style="opacity:.4;cursor:default;margin-bottom:.2rem;">D\u00e9lib. \u2014</span>';
+    var pvBtn = d.pv
+      ? '<a href="' + d.pv + '" target="_blank" class="btn btn-ghost btn-sm">\ud83d\udcdd PV</a>'
+      : '';
+    tr.innerHTML = '<td style="white-space:nowrap;">' + fmtDate(d.date) + '</td>'
+      + '<td style="white-space:nowrap;font-family:monospace;font-size:.78rem;color:var(--text-secondary);">' + d.numero + '</td>'
+      + '<td><div class="delib-objet">' + d.objet + '</div>' + noteHtml + '</td>'
+      + '<td><span style="background:var(--bg-subtle);padding:.1rem .4rem;border-radius:3px;font-size:.72rem;">' + d.theme + '</span></td>'
+      + '<td><span class="badge-mandat">' + d.mandat + '</span></td>'
+      + '<td style="white-space:nowrap;">' + pdfBtn + ' ' + pvBtn + '</td>';
+    tbody.appendChild(tr);
+  });
+  document.getElementById('delib-count').textContent = list.length + ' r\u00e9sultat' + (list.length > 1 ? 's' : '');
+}
+renderDelibs(allDelibs);
+
+// ─── CSV EXPORT ──────────────────────────────────────
+window.exportCSV = function() {
+  var search = document.getElementById('search-delib').value.toLowerCase();
+  var theme = document.getElementById('filter-theme').value;
+  var mandat = document.getElementById('filter-mandat').value;
+  var filtered = allDelibs.filter(function(d) {
+    return (!search || d.objet.toLowerCase().indexOf(search) !== -1) &&
+           (!theme || d.theme === theme) &&
+           (!mandat || d.mandat === mandat);
+  });
+  var header = ['Date','Numero','Objet','Theme','Mandat','PDF'];
+  var rows = filtered.map(function(d) {
+    return [d.date, d.numero, '"' + d.objet.replace(/"/g,'""') + '"', d.theme, d.mandat, d.pdf].join(',');
+  });
+  var csv = [header.join(',')].concat(rows).join('\n');
+  var blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'deliberations-laclayette.csv';
+  a.click();
+};
+
+// ─── CHARTS ──────────────────────────────────────────
+var chartsBuilt = false;
+function buildCharts() {
+  var B = DATA.budget;
+  var commonOpts = {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { font: { size: 11, family: "'Source Sans 3', sans-serif" }, boxWidth: 10, padding: 12 } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: '#F3F4F6' }, ticks: { font: { size: 10 }, callback: function(v) { return (v/1000000).toFixed(1) + 'M'; } } }
+    }
+  };
+
+  new Chart(document.getElementById('chart-fonctionnement'), {
+    type: 'bar',
+    data: {
+      labels: B.annees,
+      datasets: [
+        { label: 'D\u00e9penses', data: B.fonctionnement_depenses, backgroundColor: '#BFDBFE', borderColor: '#3B82F6', borderWidth: 1.5, borderRadius: 3 },
+        { label: 'Recettes', data: B.fonctionnement_recettes, backgroundColor: '#A7F3D0', borderColor: '#059669', borderWidth: 1.5, borderRadius: 3 }
+      ]
+    },
+    options: commonOpts
+  });
+
+  new Chart(document.getElementById('chart-investissement'), {
+    type: 'bar',
+    data: {
+      labels: B.annees,
+      datasets: [
+        { label: 'D\u00e9penses investissement', data: B.investissement_depenses, backgroundColor: '#FDE68A', borderColor: '#D97706', borderWidth: 1.5, borderRadius: 3 }
+      ]
+    },
+    options: commonOpts
+  });
+
+  new Chart(document.getElementById('chart-dette'), {
+    type: 'line',
+    data: {
+      labels: B.annees,
+      datasets: [
+        { label: 'Encours de dette', data: B.dette_capital, borderColor: '#DC2626', backgroundColor: 'rgba(220,38,38,.08)', fill: true, tension: 0.3, pointBackgroundColor: '#DC2626', pointRadius: 4 }
+      ]
+    },
+    options: Object.assign({}, commonOpts, {
+      scales: Object.assign({}, commonOpts.scales, {
+        y: { grid: { color: '#F3F4F6' }, ticks: { font: { size: 10 }, callback: function(v) { return (v/1000000).toFixed(1) + 'M'; } } }
+      })
+    })
+  });
+}
+
+// ─── ENGAGEMENTS ─────────────────────────────────────
+var icons = { ok: '\u2705', partial: '\u26a0\ufe0f', pending: '\u23f3', none: '\u274c', herite: '\u{1F4E5}' };
+var engGrid = document.getElementById('eng-grid');
+DATA.engagements.forEach(function(e) {
+  var div = document.createElement('div');
+  div.className = 'eng-item';
+  div.innerHTML = '<div class="eng-status ' + e.statut + '">' + icons[e.statut] + '</div>'
+    + '<div class="eng-content">'
+    + '<div class="eng-title">' + e.titre + '</div>'
+    + '<div class="eng-detail">' + e.detail + '</div>'
+    + '<span class="eng-tag ' + e.statut + '">' + e.label + '</span>'
+    + '</div>';
+  engGrid.appendChild(div);
+});
+
+// ─── SEMA TIMELINE ───────────────────────────────────
+var tl = document.getElementById('sema-timeline');
+DATA.sema_timeline.forEach(function(item) {
+  var div = document.createElement('div');
+  div.className = 'tl-item';
+  var srcHtml = '';
+  if (item.source) {
+    srcHtml = '<div class="tl-badges"><span class="badge-official">\ud83d\udcca ' + item.source + '</span>';
+    if (item.pdf) srcHtml += ' <a href="' + item.pdf + '" target="_blank" class="btn btn-ghost btn-sm">\ud83d\udcc4 PDF</a>';
+    srcHtml += '</div>';
+  }
+  div.innerHTML = '<div class="tl-dot ' + item.type + '"></div>'
+    + '<div class="tl-date">' + item.date + '</div>'
+    + '<div class="tl-title">' + item.titre + '</div>'
+    + '<div class="tl-body">' + item.corps + '</div>'
+    + srcHtml;
+  tl.appendChild(div);
+});
+
+// ─── FAQ ─────────────────────────────────────────────
+var faqList = document.getElementById('faq-list');
+DATA.faq.forEach(function(item, i) {
+  var div = document.createElement('div');
+  div.className = 'faq-item';
+  div.innerHTML = '<button class="faq-q" onclick="toggleFaq(this)">'
+    + item.q
+    + '<svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    + '</button>'
+    + '<div class="faq-a">' + item.r + '</div>';
+  faqList.appendChild(div);
+});
+window.toggleFaq = function(btn) {
+  var item = btn.closest('.faq-item');
+  item.classList.toggle('open');
+};
+
+// ─── PUBLICATIONS ─────────────────────────────────────
+var pubGrid = document.getElementById('pub-grid');
+DATA.publications.forEach(function(p) {
+  var isEdit = p.type === 'editorial';
+  var div = document.createElement('div');
+  div.className = 'pub-card';
+  div.innerHTML = '<div class="pub-icon ' + p.type + '">' + (isEdit ? '\u270d\ufe0f' : '\ud83d\udcca') + '</div>'
+    + '<div class="pub-content">'
+    + '<div class="pub-meta">'
+    + (isEdit ? '<span class="badge-editorial">\u270d\ufe0f Analyse citoyenne</span>' : '<span class="badge-official">\ud83d\udcca Donn\u00e9e officielle</span>')
+    + '<span class="pub-date">' + fmtDate(p.date) + '</span>'
+    + '</div>'
+    + '<div class="pub-title">' + p.titre + '</div>'
+    + '<div class="pub-excerpt">' + p.extrait + '</div>'
+    + '<div class="pub-actions">'
+    + (p.lien
+        ? '<a href="' + p.lien + '" class="btn btn-secondary btn-sm">Lire la publication</a>'
+        : '<span class="btn btn-ghost btn-sm" style="opacity:.5;cursor:default;">Publication \u00e0 venir</span>')
+    + '</div>'
+    + '</div>';
+  pubGrid.appendChild(div);
+});
+
+// ─── RESPONSIVE TWO-COL ───────────────────────────────
+function checkResponsive() {
+  var cols = document.querySelectorAll('.two-col');
+  cols.forEach(function(c) {
+    if (window.innerWidth < 700) c.style.gridTemplateColumns = '1fr';
+    else c.style.gridTemplateColumns = '1fr 1fr';
+  });
+}
+checkResponsive();
+window.addEventListener('resize', checkResponsive);
+
+})();
+</script>
+</body>
+</html>
